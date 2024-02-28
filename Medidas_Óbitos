@@ -1,0 +1,45 @@
+\\ % de óbitos_1_Onda//
+% óbitos_1_onda = DIVIDE([Total_obitos_1_onda], [Total_acomp_1_onda])
+
+\\ % de óbitos_2_Onda//
+% óbitos_2_onda = DIVIDE([Total_obitos_2_onda], [Total_acomp_2_onda])
+
+\\Máximo de óbitos_1_Onda//
+Máximo de obitos Novos por estado_1_onda = 
+MAXX(
+	KEEPFILTERS(VALUES('estados'[estado])),
+	CALCULATE(SUM('covid_parte_1'[obitosNovos]))
+)
+
+\\Máximo de óbitos_2_Onda//
+Máximo de obitos Novos por estado_2_onda = 
+MAXX(
+	KEEPFILTERS(VALUES('estados'[estado])),
+	CALCULATE(SUM('covid_parte_2'[obitosNovos]))
+)
+
+\\Média de óbitos_1_Onda//
+Media_obitos_por_população_1_onda = 
+AVERAGEX(
+    KEEPFILTERS(VALUES('covid_parte_1'[populacaoTCU2019])),
+    CALCULATE(SUM('covid_parte_1'[obitosAcumulado]))
+)
+
+\\Média de óbitos_2_Onda//
+Media_obitos_por_população_2_onda = 
+AVERAGEX(
+    KEEPFILTERS(VALUES('covid_parte_2'[populacaoTCU2019])),
+    CALCULATE(SUM('covid_parte_2'[obitosAcumulado]))
+)
+
+\\Total de Óbitos_1_Onda//
+Total_obitos_1_onda = SUM(covid_parte_1[obitosAcumulado])
+
+\\Total de Óbitos_2_Onda//
+Total_obitos_2_onda = SUM(covid_parte_2[obitosAcumulado])
+
+\\Total de Novos Óbitos_1_Onda//
+Total_obitos_nv_1_onda = SUM(covid_parte_1[obitosNovos])
+
+\\Total de Novos Óbitos_2_Onda//
+Total_obitos_nv_2_onda = SUM(covid_parte_2[obitosNovos])
