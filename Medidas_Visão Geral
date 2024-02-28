@@ -1,0 +1,22 @@
+//Casos em Acompanhamento//
+Casos em Acompanhamento = 
+SUM('covid_parte_1'[emAcompanhamentoNovos]) + SUM('covid_parte_2'[emAcompanhamentoNovos])
+
+//Porcentagem de Mortalidade//
+Porcentagem de Mortalidade = 
+[taxa_mortalidade_1_onda] + [taxa_mortalidade_2_onda]
+
+\\Taxa de Mortalidade_1_onda//
+taxa_mortalidade_1_onda = DIVIDE([Total_obitos_1_onda], [Casos Confi_1_onda])
+
+\\Taxa de Mortalidade_2_onda//
+taxa_mortalidade_2_onda = DIVIDE([Total_obitos_2_onda], [Casos Confi_2_onda])
+
+\\Casos Acumulados//
+Total de Casos = 
+SUM('covid_parte_1'[casosAcumulado]) + SUM('covid_parte_2'[casosAcumulado])
+
+\\Total de obitos//
+Total de Óbitos = 
+SUM('covid_parte_1'[obitosAcumulado]) + SUM('covid_parte_2'[obitosAcumulado])
+
