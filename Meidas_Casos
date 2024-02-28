@@ -1,0 +1,51 @@
+\\% Casos 1_Onda//
+% Casos_1_onda = DIVIDE( [Casos_novos_1_onda], [Total_acomp_1_onda])
+
+\\% Casos 2_Onda //
+% Casos_2_onda = DIVIDE([casos_novos_2_onda], [Total_acomp_2_onda]) 
+
+\\Casos Confi 1_Onda//
+Casos Confi_1_onda = SUM(covid_parte_1[casosAcumulado])
+
+\\Casos Confi 2_Onda//
+Casos Confi_1_onda = SUM(covid_parte_2[casosAcumulado])
+
+\\Casos Novos 1_Onda//
+Casos_novos_1_onda = SUM(covid_parte_1[casosNovos])
+
+\\Casos Novos 2_Onda//
+Casos_novos_2_onda = SUM(covid_parte_2[casosNovos])
+
+\\Max_Casos_1_Onda//
+Máximo de casos por estado_1_onda = 
+MAXX(
+	KEEPFILTERS(VALUES('estados'[estado])),
+	CALCULATE(SUM('covid_parte_1'[casosNovos]))
+)
+
+\\Max_Casos_2_Onda//
+Máximo de casos por estado_2_onda = 
+MAXX(
+	KEEPFILTERS(VALUES('estados'[estado])),
+	CALCULATE(SUM('covid_parte_2'[casosNovos]))
+)
+
+\\Media de Casos_1_Onda//
+Med_casos_1_onda = AVERAGEX(
+	KEEPFILTERS(VALUES('covid_parte_1'[populacaoTCU2019])),
+	CALCULATE(SUM('covid_parte_1'[casosNovos]))
+)
+
+\\ Media de Casos_2_Onda//
+Med_casos_2_onda = AVERAGEX(
+	KEEPFILTERS(VALUES('covid_parte_2'[populacaoTCU2019])),
+	CALCULATE(SUM('covid_parte_2'[casosNovos]))
+)
+
+\\Total Acumulado 1_Onda//
+Total_acomp_1_onda = SUM(covid_parte_1[emAcompanhamentoNovos])
+
+\\Total Acumulado 2_Onda//
+Total_acomp_2_onda = SUM(covid_parte_2[emAcompanhamentoNovos])
+
+
